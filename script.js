@@ -38,7 +38,43 @@ function playRound(playerSelection, computerSelection) {
         result = `You win! Scissors beats Paper.`
     } else if (playerNorm === "Scissors" && computerSelection === "Rock") {
         result = `You lose! Rock beats Scissors.`
+    } else {
+        result = `You did not enter a proper option. Enter only rock, paper, or scissors.`
     }
 
     return result;
 }
+
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    let tieScore = 0;
+    
+    for (let i=0; i<5; i++) {
+        let playerSelection = window.prompt(`Type rock, paper, or scissors in the box below. (Round ${i+1}/5)`);
+        let result = playRound(playerSelection,computerPlay())
+        console.log(result);
+        if (result.charAt(4)==="w") {
+            playerScore++;
+        } else if(result.charAt(4)==="l") {
+            computerScore++;
+        } else {
+            tieScore++;
+        }
+        if(i<4) {
+            console.log(`Current score: ${playerScore}-${computerScore}-${tieScore}`);
+        }
+        else {
+            console.log(`Final score: ${playerScore}-${computerScore}-${tieScore}`);
+            if(playerScore>computerScore) {
+                console.log("Congratulations, you win!");
+            } else if (computerScore>playerScore) {
+                console.log("Oh, so sorry. You lose. Better luck next time.");
+            } else {
+                console.log("The game was a tie overall.");
+            }
+        }
+    }
+}
+
+game();
