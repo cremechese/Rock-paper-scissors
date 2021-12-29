@@ -1,3 +1,38 @@
+const buttons = document.querySelectorAll('button');
+let playerScore = 0;
+let computerScore = 0;
+let tieScore = 0;
+let message = "";
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        let result = playRound(button.id, computerPlay());
+        
+        document.getElementById("result").innerHTML = result;
+        if (result.charAt(4)==="w") {
+            playerScore++;
+        } else if(result.charAt(4)==="l") {
+            computerScore++;
+        } else {
+            tieScore++;
+        }
+        if(playerScore+computerScore+tieScore<4) {
+            message = `Current score: ${playerScore}-${computerScore}-${tieScore}`;
+        } else {
+            message = `Final score: ${playerScore}-${computerScore}-${tieScore}`;
+            if(playerScore>computerScore) {
+                message += `\nCongratulations, you win!`;
+            } else if (computerScore>playerScore) {
+                message += `\nOh, so sorry. You lose. Better luck next time.`;
+            } else {
+                message += `\nThe game was a tie overall.`;
+            }
+            buttons.forEach((button) => {button.disabled = true;});
+        }
+        document.getElementById("score").innerHTML = message;
+    })
+});
+
 function computerPlay() {
     let rand = Math.floor(Math.random()*3);
     let choice = "";
@@ -76,5 +111,3 @@ function game() {
         }
     }
 }
-
-game();
