@@ -63,19 +63,19 @@ function playRound(playerSelection, computerSelection) {
     let result = ""
     let playerNorm = normalizeCases(playerSelection);
     if(playerNorm === computerSelection) {
-        result = `It's a tie! You both picked ${playerNorm}.`
+        result = `It's a tie! You and the computer both picked <b>${playerNorm}</b>.`
     } else if (playerNorm === "Rock" && computerSelection === "Scissors") {
-        result = `You win! Rock beats Scissors.`
+        result = `Computer's choice: <b>Scissors</b><br> You win! Rock beats Scissors.`
     } else if (playerNorm === "Rock" && computerSelection === "Paper") {
-        result = `You lose! Paper beats Rock.`
+        result = `Computer's choice: <b>Paper</b><br> You lose! Paper beats Rock.`
     } else if (playerNorm === "Paper" && computerSelection === "Rock") {
-        result = `You win! Paper beats Rock.`
+        result = `Computer's choice: <b>Rock</b><br> You win! Paper beats Rock.`
     } else if (playerNorm === "Paper" && computerSelection === "Scissors") {
-        result = `You lose! Scissors beats Paper.`
+        result = `Computer's choice: <b>Scissors</b><br> You lose! Scissors beats Paper.`
     } else if (playerNorm === "Scissors" && computerSelection === "Paper") {
-        result = `You win! Scissors beats Paper.`
+        result = `Computer's choice: <b>Paper</b><br> You win! Scissors beats Paper.`
     } else if (playerNorm === "Scissors" && computerSelection === "Rock") {
-        result = `You lose! Rock beats Scissors.`
+        result = `Computer's choice: <b>Rock</b><br> You lose! Rock beats Scissors.`
     } else {
         result = `You did not enter a proper option. Enter only rock, paper, or scissors.`
     }
