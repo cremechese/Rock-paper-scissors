@@ -16,16 +16,19 @@ buttons.forEach((button) => {
         } else {
             tieScore++;
         }
-        if(playerScore+computerScore+tieScore<4) {
+        if(playerScore+computerScore+tieScore<5) {
             message = `Current score: ${playerScore}-${computerScore}-${tieScore}`;
         } else {
-            message = `Final score: ${playerScore}-${computerScore}-${tieScore}`;
+            message = `Final score: ${playerScore}-${computerScore}-${tieScore}<br>`;
             if(playerScore>computerScore) {
-                message += `\nCongratulations, you win!`;
+                message += `Congratulations, you win!`;
+                document.body.style.background = "#3CB371";
             } else if (computerScore>playerScore) {
-                message += `\nOh, so sorry. You lose. Better luck next time.`;
+                message += `Oh, so sorry. You lose. Better luck next time.`;
+                document.body.style.background = "#F08080";
             } else {
-                message += `\nThe game was a tie overall.`;
+                message += `The game was a tie overall.`;
+                document.body.style.background = "#F0E68C";
             }
             buttons.forEach((button) => {button.disabled = true;});
         }
