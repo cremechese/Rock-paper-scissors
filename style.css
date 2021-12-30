@@ -11,7 +11,9 @@ body {
 }
 
 button {
-  font-size: 20vw;
+  font-size: min(20vw, 200px);
+  width: 100%;
+  max-width: 300px;
 }
 
 .button-list {
@@ -19,6 +21,8 @@ button {
   gap: 1vw;
   align-items: center;
   margin-bottom: 20px;
+  justify-content: center;
+  margin: 0 5vw;
 }
 
 .header, .footer {
