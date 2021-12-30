@@ -3,15 +3,16 @@ let playerScore = 0;
 let computerScore = 0;
 let tieScore = 0;
 let message = "";
+let win = 0;
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         let result = playRound(button.id, computerPlay());
         
         document.getElementById("result").innerHTML = result;
-        if (result.charAt(4)==="w") {
+        if (win === 2) {
             playerScore++;
-        } else if(result.charAt(4)==="l") {
+        } else if(win === 0) {
             computerScore++;
         } else {
             tieScore++;
@@ -64,20 +65,28 @@ function playRound(playerSelection, computerSelection) {
     let playerNorm = normalizeCases(playerSelection);
     if(playerNorm === computerSelection) {
         result = `It's a tie! You and the computer both picked <b>${playerNorm}</b>.`
+        win = 1;
     } else if (playerNorm === "Rock" && computerSelection === "Scissors") {
         result = `Computer's choice: <b>Scissors</b><br> You win! Rock beats Scissors.`
+        win = 2;
     } else if (playerNorm === "Rock" && computerSelection === "Paper") {
         result = `Computer's choice: <b>Paper</b><br> You lose! Paper beats Rock.`
+        win = 0;
     } else if (playerNorm === "Paper" && computerSelection === "Rock") {
         result = `Computer's choice: <b>Rock</b><br> You win! Paper beats Rock.`
+        win = 2;
     } else if (playerNorm === "Paper" && computerSelection === "Scissors") {
         result = `Computer's choice: <b>Scissors</b><br> You lose! Scissors beats Paper.`
+        win = 0;
     } else if (playerNorm === "Scissors" && computerSelection === "Paper") {
         result = `Computer's choice: <b>Paper</b><br> You win! Scissors beats Paper.`
+        win = 2;
     } else if (playerNorm === "Scissors" && computerSelection === "Rock") {
         result = `Computer's choice: <b>Rock</b><br> You lose! Rock beats Scissors.`
+        win = 0;
     } else {
         result = `You did not enter a proper option. Enter only rock, paper, or scissors.`
+        win = 1;
     }
 
     return result;
@@ -92,9 +101,9 @@ function game() {
         let playerSelection = window.prompt(`Type rock, paper, or scissors in the box below. (Round ${i+1}/5)`);
         let result = playRound(playerSelection,computerPlay())
         console.log(result);
-        if (result.charAt(4)==="w") {
+        if (win === 2) {
             playerScore++;
-        } else if(result.charAt(4)==="l") {
+        } else if(win === 0) {
             computerScore++;
         } else {
             tieScore++;
